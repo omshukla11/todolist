@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> List of Todos </title>
+</head>
+
+<body>
+    <h2 class='heading'>Todo List <span class="logout"><button type="button" class="btn btn-danger"><a href={% url 'LogoutUser' %}>Logout</a></button></span> </h2>
+    <span>Helloo, </span>
+    {% for t in todos %}
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{ t.task }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ t.bydate }} {{ t.bytime }}</h5>
+            <p class="card-text">{{ t.description }}</p>
+            <button type="button" class="btn btn-danger"><a href={% url 'DeleteTodo' t.id %}>Delete</a></button>
+            <button type="button" class="btn btn-info"><a href={% url 'UpdateTodo' t.id %}>Update</a></button>
+        </div>
+    </div>
+    {% endfor %}
+    
+</body>
+
+{% endblock %}

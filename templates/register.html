@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+    <title> Register User </title>
+</head>
+
+<body>
+    <center>
+        <form class="temp card" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <h2 class="temp"> Register yourself! </h2>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">{{ form.email.label }}: </label>
+                {{ form.email }}
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div><br>
+            <div class="mb-3">
+                <label for="exampleInputText1" class="form-label">{{ form.username.label }}: </label>
+                {{ form.username }}
+            </div><br>
+            <div class="mb-3">
+                <label for="exampleInputText1" class="form-label">{{ form.full_name.label }}: </label>
+                {{ form.full_name }}
+            </div><br>
+            <div class="mb-3">
+                <label for="exampleInputImage1" class="form-label">{{ form.profile_pic.label }}: </label>
+                {{ form.profile_pic }}
+            </div><br>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">{{form.password1.label}}: </label>
+                {{form.password1}}
+            </div>
+            <div id="passwordHelpBlock" class="form-text">
+                Your password must be 8-20 characters long, contain letters and numbers, and must not contain
+                spaces,
+                special characters, or emoji.
+            </div><br><br>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">{{form.password2.label}}: </label>
+                {{form.password2}}
+            </div>
+            <div id="passwordHelpBlock" class="form-text">
+                Type your password again to confirm
+            </div><br><br>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        {{ form.errors }}
+    </center>
+</body>
+
+{% endblock %}
