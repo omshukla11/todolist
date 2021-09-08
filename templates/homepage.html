@@ -8,24 +8,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title> List of Todos </title>
 </head>
 
 <body>
-    <h2 class='heading'>Todo List <span class="logout"><button type="button" class="btn btn-danger"><a href={% url 'LogoutUser' %}>Logout</a></button></span> </h2>
-    <span>Helloo, </span>
-    {% for t in todos %}
-    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">{{ t.task }}</div>
-        <div class="card-body">
-            <h5 class="card-title">{{ t.bydate }} {{ t.bytime }}</h5>
-            <p class="card-text">{{ t.description }}</p>
-            <button type="button" class="btn btn-danger"><a href={% url 'DeleteTodo' t.id %}>Delete</a></button>
-            <button type="button" class="btn btn-info"><a href={% url 'UpdateTodo' t.id %}>Update</a></button>
+    <center>
+        <span class="logout">
+            <button type="button" name="button" class="animated-button-2"><a href={% url 'LogoutUser' %}>Logout&nbsp;</a></button>
+        </span>
+        <span class="logout">
+            <button type="button" name="button" class="animated-button-1"><a href={% url 'CreateTodo' %}>Create&nbsp;</a></button>
+        </span>
+        <h2 class='heading'>
+            Todo List &nbsp;<i class="fas fa-clipboard-list"></i>
+        </h2>
+        <br><br><br>
+        {% for t in todos %}
+        <div class="card text-white mb-3" style="max-width: 18rem;">
+            <div class="card-header  bg-dark">{{ t.task }}</div>
+            <div class="card-body bg-secondary">
+                <div class="row">
+                    <div class="col-6">
+
+                        <h5 class="card-title">{{ t.bydate }} {{ t.bytime }}</h5>
+                        <p class="card-text">{{ t.description }}</p>
+                    </div>
+                    <div class="col-6">
+
+                        <button type="button" class="btn btn-lg btn-danger"><a href={% url 'DeleteTodo' t.id %}><i
+                                    class="fas  fa-trash"></i></a></button>
+                        <br>
+                        <button type="button" class="btn btn-lg btn-info"><a href={% url 'UpdateTodo' t.id %}><i
+                                    class="fas fa-user-edit"></i></a></button>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-    {% endfor %}
-    
+        <br>
+        {% endfor %}
+    </center>
 </body>
 
 {% endblock %}
