@@ -45,7 +45,7 @@ def logout(request):
 
 @login_required(login_url='LoginUser')
 def homepage(request):
-    todos = Todo.objects.all()
+    todos = Todo.objects.filter(user=request.user)
     context = {'todos': todos}
     return HttpResponse(render(request,"homepage.html",context))
 
