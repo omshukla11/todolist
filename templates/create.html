@@ -1,22 +1,71 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Create Todo </title>
-</head>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <title> Create Todo </title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card {
+            width: 400px;
+        }
+
+        .btn-outline-primary {
+            transform: translateX(100px);
+            width: 200px;
+        }
+
+        .heading {
+            font-size: 3rem;
+            padding: 3%;
+
+        }
+
+        .mb-3 {
+            padding: 1%;
+        }
+    </style>
+</head>
 <body>
-    <h2> Input Details of the task you wanna do! </h2>
-    <form class="form" method="POST"> {% csrf_token %}
-        {{ form.as_p }}
-        <input type='submit' value="Create"/>
+    <center>
+    <h2 class="temp heading">Update {{todo.task}} &nbsp; <i class="fas fa-clipboard-list"></i></h2><br><br>
+    <form class="card" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="mb-3" data-toggle="tooltip" data-placement="right">
+            <label for="exampleInputEmail1" class="form-label">{{ form.task.label }}: </label>
+            {{ form.task }}
+        </div>
+        <div class="mb-3" data-toggle="tooltip" data-placement="right">
+            <label for="exampleInputEmail1" class="form-label">{{ form.description.label }}: </label>
+            {{ form.description }}
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="exampleInputText1" class="form-label">{{ form.bydate.label }}: </label>
+            {{ form.bydate }}
+        </div><br>
+        <div class="mb-3">
+            <label for="exampleInputText1" class="form-label">{{ form.bytime.label }}: </label>
+            {{ form.bytime }}
+        </div><br>
+        <button type="submit" class="btn btn-lg btn-outline-primary">Create</button>
+        {{ form.errors }}
     </form>
+    </center>
 </body>
 
 {% endblock %}

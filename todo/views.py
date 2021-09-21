@@ -14,7 +14,6 @@ def register(request):
     else:
         form = CreateUserForm()
         if request.method == 'POST':
-            print(request.FILES)
             form = CreateUserForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
@@ -75,7 +74,6 @@ def deletetodo(request, id):
 def updatetodo(request, id=None):
     todo = get_object_or_404(Todo, id=id)
     form = TodoForm(request.POST or None, instance=todo)
-    print(form.is_valid())
     if form.is_valid():
         obj = form.save(commit=False)
         obj.instance.user = request.user
